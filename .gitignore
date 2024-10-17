@@ -1,0 +1,6 @@
+# Ignorowanie folderu .vs oraz innych plików generowanych przez Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
