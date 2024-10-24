@@ -100,20 +100,27 @@ void lista_dwukierunkowa::dodajkoniec(int a) {
 
 void lista_dwukierunkowa::dodajindex(int a, int b) {
     wezel* wezeln = new wezel(a);
+
     if (b == 0) {
         dodajpoczatek(a);
         return;
     }
+
     wezel* o = poczatek;
+
     for (int i = 0; o != nullptr && i < b; i++) { o = o->nastepny_element; }
+
     if (o == nullptr) { dodajkoniec(a); }
+
     else {
         wezeln->nastepny_element = o->nastepny_element;
         wezeln->poprzedni_element = o;
         o->nastepny_element = wezeln;
+
         if (wezeln->nastepny_element != nullptr) {
             wezeln->nastepny_element->poprzedni_element = wezeln;
         }
+
         else {
             koniec = wezeln;
         }
@@ -138,7 +145,7 @@ void lista_dwukierunkowa::wypisz(void) {
 
 }
 
-void lista_dwukierunkowa::wypisztyl(void) {
+void lista_dwukierunkowa::wypiszodtylu(void) {
 
     wezel* o = koniec;
     cout << endl;
@@ -157,13 +164,19 @@ void lista_dwukierunkowa::wypisznastepny_element(int a) {
     }
 
     wezel* o = poczatek;
+    for (int i = 0; o != nullptr && i < a; i++) {
+        o = o->nastepny_element;
+    }
 
-    for (int i = 0; o != nullptr && i < a; i++) { o = o->nastepny_element; }
+    if (o == nullptr || o->nastepny_element == nullptr) {
+        cout << "Brak nastepnego elementu" << endl;
+        return;
+    }
 
     wezel* s = o->nastepny_element;
     cout << s->a << endl;
-
 }
+
 void lista_dwukierunkowa::wypiszpoprzedni_element(int a) {
 
     if (!poczatek) {
@@ -172,8 +185,14 @@ void lista_dwukierunkowa::wypiszpoprzedni_element(int a) {
     }
 
     wezel* o = poczatek;
+    for (int i = 0; o != nullptr && i < a; i++) {
+        o = o->nastepny_element;
+    }
 
-    for (int i = 0; o != nullptr && i < a; i++) { o = o->nastepny_element; }
+    if (o == nullptr || o->poprzedni_element == nullptr) {
+        cout << "Brak poprzedniego elementu" << endl;
+        return;
+    }
 
     wezel* s = o->poprzedni_element;
     cout << s->a << endl;
