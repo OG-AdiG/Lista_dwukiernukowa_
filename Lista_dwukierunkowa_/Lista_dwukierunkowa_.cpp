@@ -70,4 +70,8 @@ int main()
     cout << "Czyszczenie listy. ";
     a.usun();
 
+    cout << "" << endl;
+    cout << "Czyszczenie listy. ";
+    a.usun();
+
 }
