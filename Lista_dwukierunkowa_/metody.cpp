@@ -36,3 +36,64 @@ void lista_dwukierunkowa::minuspoczatek(void) {
     else { koniec = nullptr; }
 
 }
+
+void lista_dwukierunkowa::minusindex(int a) {
+
+    if (!poczatek) {
+        cout << "brak poczatku listy\n";
+        return;
+    }
+
+    if (a == 0) {
+        this->minuspoczatek();
+        return;
+    }
+
+    wezel* o = poczatek;
+
+    for (int i = 0; o != nullptr && i < a; i++) { o = o->nastepny_element; }
+
+    if (o == nullptr) {
+        this->minuskoniec();
+        return;
+    }
+
+    if (o->poprzedni_element != nullptr) {
+        o->poprzedni_element->nastepny_element = o->nastepny_element;
+    }
+
+    if (o->nastepny_element != nullptr) {
+        o->nastepny_element->poprzedni_element = o->poprzedni_element;
+    }
+
+    delete o;
+
+};
+
+void lista_dwukierunkowa::minuskoniec(void) {
+
+    if (!koniec) { cout << "brak konca listy\n"; }
+
+    koniec = koniec->poprzedni_element;
+
+    if (koniec){
+        koniec->nastepny_element = nullptr;
+    }
+
+    else { poczatek = nullptr; }
+
+}
+
+void lista_dwukierunkowa::dodajkoniec(int a) {
+
+    wezel* wezeln = new wezel(a);
+
+    if (!koniec) { poczatek = koniec = wezeln; }
+
+    else {
+        wezeln->poprzedni_element = koniec;
+        koniec->nastepny_element = wezeln;
+        koniec = wezeln;
+    }
+
+}
